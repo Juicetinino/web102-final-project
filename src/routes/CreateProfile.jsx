@@ -1,33 +1,84 @@
-/*
-This is a page where users can create a profile with a username and password.
-There are no requirements other than every username must be unique.
-And they must have some Password.
-*/
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
+import { supabase } from '../supabaseClient';
+import { useAuth } from '../useAuth';
 
 function CreateProfile() {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [usernameError, setUsernameError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const { logIn } = useAuth();
+    const navigate = useNavigate();
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        setUsernameError('');
+        setPasswordError('');
+
+        let hasError = false;
+        if (!username.trim()) {
+            setUsernameError('You must enter a username.');
+            hasError = true;
+        }
+        if (!password || !confirmPassword) {
+            setPasswordError('You must enter a password.');
+            hasError = true;
+        } else if (password !== confirmPassword) {
+            setPasswordError('Passwords must match.');
+            hasError = true;
+        }
+        if (hasError) return;
+
+        const { data, error } = await supabase
+            .from('profiles')
+            .insert({ username: username.trim(), password })
+            .select()
+            .single();
+
+        if (error) {
+            if (error.code === '23505') {
+                setUsernameError('Username is taken.');
+            } else {
+                setUsernameError('Something went wrong. Please try again.');
+            }
+            return;
+        }
+
+        logIn(data);
+        navigate('/');
+    }
+
     return (
-        <>
-            <div className="content-container">
-                <div className="feed">
-                    <h1>Create a Profile</h1>
+        <div className="content-container">
+            <div className="feed">
+                <h1>Create a Profile</h1>
+                <form onSubmit={handleSubmit}>
                     <p className="paragraph">Username:</p>
-                    <input type="text" />
-                    {/* Display this if Username is taken or user didnt enter a username. (one or the other) */}
-                    <p className="error">Username is taken OR You must enter a username</p>
+                    <input
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+                    {usernameError && <p className="error">{usernameError}</p>}
                     <p className="paragraph">Password:</p>
-                    <input type="text" />
-                    {/* Display this if passwords don't match or user didnt enter a password. */}
-                    <p className="error">Passwords must match OR You must enter a password.</p>
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
                     <p className="paragraph">Confirm password:</p>
-                    <input type="text" />
-                    {/* Display this if passwords don't match or user didnt enter a password. */}
-                    <p className="error">Passwords must match OR You must enter a password.</p>
-                    <button>
-                        Create account.
-                    </button>
-                </div>
+                    <input
+                        type="password"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                    />
+                    {passwordError && <p className="error">{passwordError}</p>}
+                    <button type="submit">Create account</button>
+                </form>
             </div>
-        </>
+        </div>
     );
 };
 

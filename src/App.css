@@ -1,19 +1,20 @@
 button {
   border-radius: 20px;
-  border: 1px solid blue;
+  border: 1px solid var(--accent);
   margin: 0.4em;
   padding: 0.3em 1em 0.3em 1em;
   font-size: 1.5em;
   font-family: inherit;
-  background-color: lightblue;
-  color: black;
+  background-color: var(--accent);
+  color: #ffffff;
   cursor: pointer;
   margin-top: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow);
 }
 
 button:hover {
   cursor: pointer;
+  background-color: var(--accent-hover);
   transform: scale(1.02);
   transition: transform 0.05s ease-in-out;
 }
@@ -21,6 +22,37 @@ button:hover {
 button:active {
   transform: scale(0.98);
   transition: transform 0.05s ease-in-out;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+button.secondary {
+  background-color: transparent;
+  color: var(--text);
+}
+
+button.selected {
+  background-color: var(--text-h);
+  color: var(--bg);
+  border-color: var(--text-h);
+}
+
+textarea {
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  margin: 0.4em;
+  padding: 0.6em 1em;
+  font-size: 1.2em;
+  font-family: inherit;
+  background-color: var(--bg-alt);
+  color: var(--text);
+  resize: vertical;
+  box-shadow: var(--shadow);
+  box-sizing: border-box;
 }
 
 .content {
@@ -33,6 +65,7 @@ button:active {
   flex-direction: row;
   justify-content: center;
   margin-top: 120px;
+  margin-bottom: 60px;
 }
 
 .create {
@@ -40,10 +73,12 @@ button:active {
   flex-direction: row;
   justify-content: center;
   gap: 10px;
+  align-items: center;
 }
 
 .detail-image {
   width: 25%;
+  border-radius: 12px;
 }
 
 .detail-info {
@@ -51,12 +86,14 @@ button:active {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 10px;
 }
 
 .detail-options {
   display: flex;
   flex-direction: row;
-  height: 80px;
+  align-items: center;
+  gap: 10px;
 }
 
 .detail-widget {
@@ -66,7 +103,7 @@ button:active {
 }
 
 .error {
-  color: red;
+  color: var(--error);
 }
 
 .feed {
@@ -87,6 +124,9 @@ h2 {
 h3 {
   margin: 0px;
   text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .home-buttons {
@@ -105,20 +145,45 @@ h3 {
 
 input {
   border-radius: 20px;
-  border: 1px solid lightgrey;
+  border: 1px solid var(--border);
   margin: 0.4em;
   padding: 0.3em 1em 0.3em 1em;
   font-size: 1.5em;
   font-family: inherit;
-  background-color: white;
-  color: black;
-  cursor: pointer;
+  background-color: var(--bg-alt);
+  color: var(--text);
+  cursor: text;
   margin-top: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow);
+  box-sizing: border-box;
 }
 
-.input-height {
-  min-height: 100px;
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-dim);
+}
+
+.category-tag {
+  font-size: 0.7em;
+  padding: 2px 10px;
+  border-radius: 10px;
+  color: #ffffff;
+}
+
+.category-recommendation {
+  background-color: #2f7d4f;
+}
+
+.category-spoiler {
+  background-color: #a03a4e;
+}
+
+.controls-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .left-aligned {
@@ -136,6 +201,16 @@ input {
 
 .menu-option {
   margin: 10px;
+  color: var(--text);
+}
+
+.menu-option a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.menu-option a:hover {
+  color: var(--accent-hover);
 }
 
 p {
@@ -158,6 +233,8 @@ p {
   flex-direction: column;
   align-items: flex-start;
   gap: 5px;
+  text-decoration: none;
+  color: inherit;
 }
 
 .post:hover {
@@ -171,12 +248,19 @@ p {
   transition: transform 0.05s ease-in-out;
 }
 
+.post-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
 .post-info {
   display: flex;
   flex-direction: row;
   justify-content: left;
+  align-items: center;
   gap: 20px;
-  color: rgb(77, 77, 77);
+  color: var(--text-dim);
 }
 
 .post-type {
@@ -202,10 +286,10 @@ p {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.32);
+  box-shadow: var(--shadow);
   position: fixed;
-  background-color: pink;
-
+  background-color: var(--bg-alt);
+  z-index: 10;
 }
 
 .top-bar-content {
@@ -227,10 +311,10 @@ p {
 
 .widget {
   border-radius: 20px;
-  background-color: skyblue;
+  background-color: var(--widget-bg);
   padding: 10px;
   margin: 10px;
-  border: 2px solid blue;
+  border: 2px solid var(--border);
   box-sizing: border-box;
   padding-left: 20px;
 }

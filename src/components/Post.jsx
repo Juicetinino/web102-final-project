@@ -1,26 +1,25 @@
-/*
-This contains the part of a post that will be displayed in the feed.
-Title, times, upvotes count.
-If the title is wider than one line allows, truncate with ...
-If the post belongs to m a logged in user, show edit and delete buttons.
-Edit button brings you to the post page.
-Color scheme is dependent on whether it is a recommendation or a spoiler type post.
-*/
 import { Link } from 'react-router';
 
-function Post() {
-    return (
-        <>
+function formatDate(dateString) {
+    return new Date(dateString).toLocaleString(undefined, {
+        dateStyle: 'medium',
+        timeStyle: 'short',
+    });
+};
 
-            <Link to="../post-detail/1" className="widget post">
-                <h3>Flow: This is the title. It gets cut off if too long...</h3>
-                <div className="post-info">
-                    <p>Posted by USERNAME</p>
-                    <p>August 3rd, 2026 - 1:23 am</p>
-                    <p> 123 upvotes</p>
-                </div>
-            </Link>
-        </>
+function Post({ post }) {
+    return (
+        <Link to={`/post-detail/${post.id}`} className="widget post">
+            <h3>{post.title}</h3>
+            <div className="post-info">
+                <span className={`category-tag category-${post.category}`}>
+                    {post.category === 'spoiler' ? 'Spoiler' : 'Recommendation'}
+                </span>
+                <p>Posted by {post.username}</p>
+                <p>{formatDate(post.created_at)}</p>
+                <p>{post.upvotes} upvotes</p>
+            </div>
+        </Link>
     );
 };
 

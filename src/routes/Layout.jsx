@@ -1,13 +1,16 @@
-/*
-This will include a top bar that has a home/logo button,
-a recommendations button, and a spoiler central button.
-Also a sign in/create an account button.
-*/
-
-import { Outlet, Link } from 'react-router';
+import { Outlet, Link, useNavigate } from 'react-router';
 import logo from '../assets/logo.svg'
+import { useAuth } from '../useAuth';
 
 function Layout() {
+    const { profile, logOut } = useAuth();
+    const navigate = useNavigate();
+
+    function handleLogOut() {
+        logOut();
+        navigate('/');
+    }
+
     return (
         <>
             <div className="top-bar">
@@ -16,11 +19,17 @@ function Layout() {
                         <img src={logo} alt="Website logo" className="logo2" />
                     </Link>
                     <div className="spacer"></div>
-                    <p className="menu-option">Recommendations</p>
-                    <p className="menu-option">Spoiler Central</p>
-                    <p className="menu-option"><Link to="Feed">Everything</Link></p>
-                    {/* The log in button should be a log out button if the user is logged in */}
-                    <button><Link to="log-in/">Log in</Link></button>
+                    <p className="menu-option"><Link to="/feed?category=recommendation">Recommendations</Link></p>
+                    <p className="menu-option"><Link to="/feed?category=spoiler">Spoiler Central</Link></p>
+                    <p className="menu-option"><Link to="/feed">Everything</Link></p>
+                    {profile ? (
+                        <>
+                            <p className="menu-option">Hi, {profile.username}</p>
+                            <button onClick={handleLogOut}>Log out</button>
+                        </>
+                    ) : (
+                        <Link to="/log-in"><button>Log in</button></Link>
+                    )}
                 </div>
             </div>
             <div className="content-window">
