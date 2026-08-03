@@ -62,12 +62,16 @@ function CreateProfile() {
                         onChange={(e) => setUsername(e.target.value)}
                     />
                     {usernameError && <p className="error">{usernameError}</p>}
-                    <p className="paragraph">Password:</p>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
+
+                    <div className="row">
+                        <p className="paragraph">Password:</p>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
+
                     <p className="paragraph">Confirm password:</p>
                     <input
                         type="password"

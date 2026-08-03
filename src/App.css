@@ -144,6 +144,7 @@ h3 {
 }
 
 input {
+  width: 100%;
   border-radius: 20px;
   border: 1px solid var(--border);
   margin: 0.4em;
@@ -322,4 +323,5 @@ p {
   border: 2px solid var(--border);
   box-sizing: border-box;
   padding-left: 20px;
+  padding-right: 20px;
 }
