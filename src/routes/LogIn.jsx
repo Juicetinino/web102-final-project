@@ -14,6 +14,7 @@ function LogIn() {
         <>
             <div className="content-container">
                 <div className="feed">
+                    <h1>Log in</h1>
                     <p className="paragraph">Username:</p>
                     <input type="text" placeholder="Enter username" />
                     <p className="paragraph">Password:</p>

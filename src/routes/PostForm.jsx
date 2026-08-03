@@ -15,6 +15,7 @@ function PostForm() {
         <>
             <div className="content-container">
                 <div className="feed">
+                    <h1>Make a post</h1>
                     <div className="post-type">
                         {/* These should be the same width */}
                         <button className="recommend-button">Recommendation</button>

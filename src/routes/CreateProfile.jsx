@@ -9,6 +9,7 @@ function CreateProfile() {
         <>
             <div className="content-container">
                 <div className="feed">
+                    <h1>Create a Profile</h1>
                     <p className="paragraph">Username:</p>
                     <input type="text" />
                     {/* Display this if Username is taken or user didnt enter a username. (one or the other) */}
