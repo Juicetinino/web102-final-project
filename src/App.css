@@ -309,6 +309,11 @@ p {
   gap: 10px;
 }
 
+.upvote-icon {
+  height: 1em;
+  width: auto;
+}
+
 .widget {
   border-radius: 20px;
   background-color: var(--widget-bg);

@@ -57,7 +57,7 @@ function PostForm() {
         const postData = {
             title: title.trim(),
             image_url: imageUrl.trim() || null,
-            body: content.trim() || null,
+            body: content.trim(),
             category,
         };
 

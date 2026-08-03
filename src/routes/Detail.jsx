@@ -141,7 +141,7 @@ function Detail() {
                 </div>
                 <div className="detail-options">
                     <button className="upvotes" onClick={handleUpvote}>
-                        <img src={UpArrow} alt="upvote" className="logo2" />
+                        <img src={UpArrow} alt="upvote" className="upvote-icon" />
                         {post.upvotes}
                     </button>
                     {isOwner && (
