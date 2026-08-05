@@ -53,7 +53,7 @@ function CreateProfile() {
     return (
         <div className="content-container">
             <div className="feed">
-                <h1>Create a Profile</h1>
+                <h1>CREATE A PROFILE</h1>
                 <form onSubmit={handleSubmit}>
                     <p className="paragraph">Username:</p>
                     <input
