@@ -98,7 +98,7 @@ function PostForm() {
     return (
         <div className="content-container">
             <div className="feed">
-                <h1>{editId ? 'Edit post' : 'Make a post'}</h1>
+                <h1>{editId ? 'EDIT POST' : 'MAKE A POST'}</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="post-type">
                         <button

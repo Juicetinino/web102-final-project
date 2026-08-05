@@ -5,8 +5,8 @@ import { supabase } from '../supabaseClient';
 import { useAuth } from '../useAuth';
 
 const CATEGORY_TITLES = {
-    recommendation: 'Recommendations',
-    spoiler: 'Spoiler Central',
+    recommendation: 'RECOMMENDATIONS',
+    spoiler: 'SPOILER CENTRAL',
 };
 
 function Feed() {
