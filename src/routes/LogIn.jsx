@@ -33,7 +33,7 @@ function LogIn() {
     return (
         <div className="content-container">
             <div className="feed">
-                <h1>Log in</h1>
+                <h1>LOG IN</h1>
                 <form onSubmit={handleSubmit}>
                     <p className="paragraph">Username:</p>
                     <input
